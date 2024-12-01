@@ -304,55 +304,55 @@ void OLED_clear(void) {
 // -----------------------------------------------------------------------------
 
 // Messages to print on OLED
-const char Message1[] PROGMEM = "HELLO WORLD !";
-const char Message2[] PROGMEM = "ATTINY13 GOES OLED !";
-const char Message3[] PROGMEM = "THE QUICK BROWN FOX";
-const char Message4[] PROGMEM = "JUMPS OVER THE LAZY";
-const char Message5[] PROGMEM = "DOG  - (0123456789)";
+// const char Message1[] PROGMEM = "HELLO WORLD !";
+// const char Message2[] PROGMEM = "ATTINY13 GOES OLED !";
+// const char Message3[] PROGMEM = "THE QUICK BROWN FOX";
+// const char Message4[] PROGMEM = "JUMPS OVER THE LAZY";
+// const char Message5[] PROGMEM = "DOG  - (0123456789)";
 
-int main(void) {
-  _delay_ms(200);
-  // Setup
-  OLED_init();                            // initialize the OLED
+// int main(void) {
+//   _delay_ms(200);
+//   // Setup
+//   OLED_init();                            // initialize the OLED
 
-  // Loop
-  while(1) {                              // loop until forever                         
-    // print messages
-    OLED_clear();                         // clear screen
-    OLED_cursor(20, 0);                   // set cursor position
-    OLED_printP(Message1);                // print message 1
-    _delay_ms(1000);                      // wait a second
-    OLED_cursor(5, 2 * MULTIPLE);         // set cursor position
-    OLED_printP(Message2);                // print message 2
-    _delay_ms(4000);                      // wait 4 seconds
-    OLED_clear();
-    OLED_printP(Message3);                // print message 3
-    OLED_cursor(0, 1 * MULTIPLE);         // set cursor next line
-    OLED_printP(Message4);                // print message 4
-    OLED_cursor(0, 2 * MULTIPLE);         // set cursor next line
-    OLED_printP(Message5);                // print message 5
-    _delay_ms(4000);                      // wait 4 seconds
+//   // Loop
+//   while(1) {                              // loop until forever                         
+//     // print messages
+//     OLED_clear();                         // clear screen
+//     OLED_cursor(20, 0);                   // set cursor position
+//     OLED_printP(Message1);                // print message 1
+//     _delay_ms(1000);                      // wait a second
+//     OLED_cursor(5, 2 * MULTIPLE);         // set cursor position
+//     OLED_printP(Message2);                // print message 2
+//     _delay_ms(4000);                      // wait 4 seconds
+//     OLED_clear();
+//     OLED_printP(Message3);                // print message 3
+//     OLED_cursor(0, 1 * MULTIPLE);         // set cursor next line
+//     OLED_printP(Message4);                // print message 4
+//     OLED_cursor(0, 2 * MULTIPLE);         // set cursor next line
+//     OLED_printP(Message5);                // print message 5
+//     _delay_ms(4000);                      // wait 4 seconds
 
-    // print all characters on 4 lines, 20 per line
-    uint8_t c = 32;
-    for (uint8_t l = 0; l < 4; l++) {
-      OLED_cursor(0, l * MULTIPLE);
-      I2C_start(OLED_ADDR);                 // start transmission to OLED
-      I2C_write(OLED_DAT_MODE);             // set data mode
-      for (uint8_t p = 20; p; p--) {
-        OLED_printC(c++);
-        if (c == 32 + 64) {
-          break;
-        }
-      }
-      I2C_stop();                           // stop transmission
-    }
-    _delay_ms(3000);                      // wait 3 seconds
+//     // print all characters on 4 lines, 20 per line
+//     uint8_t c = 32;
+//     for (uint8_t l = 0; l < 4; l++) {
+//       OLED_cursor(0, l * MULTIPLE);
+//       I2C_start(OLED_ADDR);                 // start transmission to OLED
+//       I2C_write(OLED_DAT_MODE);             // set data mode
+//       for (uint8_t p = 20; p; p--) {
+//         OLED_printC(c++);
+//         if (c == 32 + 64) {
+//           break;
+//         }
+//       }
+//       I2C_stop();                           // stop transmission
+//     }
+//     _delay_ms(3000);                      // wait 3 seconds
 
-    // scroll out the text
-    for (uint8_t i=0; i<(PAGES * 8); i++) {        // shift pixels pixels upwards
-      OLED_shift(i);                      // set vertical shift value
-      _delay_ms(100);                     // delay a bit
-    }
-  }
-}
+//     // scroll out the text
+//     for (uint8_t i=0; i<(PAGES * 8); i++) {        // shift pixels pixels upwards
+//       OLED_shift(i);                      // set vertical shift value
+//       _delay_ms(100);                     // delay a bit
+//     }
+//   }
+// }
